@@ -28,3 +28,9 @@ server:
   ssl:
     enabled: true
     bundle: web
+  servlet:
+    session:
+      cookie:
+        same-site: strict
+        http-only: true
+        secure: true
