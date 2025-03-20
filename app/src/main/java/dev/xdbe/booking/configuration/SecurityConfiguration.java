@@ -29,9 +29,11 @@ public class SecurityConfiguration {
         return http
             .authorizeHttpRequests(auth -> auth
                 // Step 3: add authorization
-                .anyRequest().permitAll()
+                    .requestMatchers("dashboard").hasRole("ADMIN")
+                    .anyRequest().permitAll()
             )
-            // Step 3: Add login form
+                // Step 3: Add login form
+                .formLogin(withDefaults())
             .csrf((csrf) -> csrf
                 .ignoringRequestMatchers("/h2-console/*")
             )
@@ -40,5 +42,18 @@ public class SecurityConfiguration {
     }
 
     // Step 3: add InMemoryUserDetailsManager
-
+    @Bean
+    public UserDetailsService users() {
+        UserDetails admin = User.builder()
+                .username("admin")
+                .password("{bcrypt}$2a$10$P4uUT5Y86WFDtGRj3vpZ2.dFhPOboLZEQCYyFj0XWbxcJDGuHKhFG")
+                .roles("ADMIN")
+                .build();
+        UserDetails user = User.builder()
+                .username("user")
+                .password("{bcrypt}$2a$10$P4uUT5Y86WFDtGRj3vpZ2.dFhPOboLZEQCYyFj0XWbxcJDGuHKhFG")
+                .roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(admin, user);
+    }
 }
