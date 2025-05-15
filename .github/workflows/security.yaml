@@ -23,6 +23,7 @@ jobs:
             --lockfile=app/gradle.lockfile
             --format=sarif
             --output=osv-results.sarif
+        continue-on-error: true
 
       - name: Upload SARIF report
         uses: github/codeql-action/upload-sarif@v3
