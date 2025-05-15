@@ -18,11 +18,16 @@ jobs:
 
       - name: Run OSV Scanner
         uses: google/osv-scanner-action@main
+        with:
+          scan-args: |
+            --lockfile=app/gradle.lockfile
+            --format=sarif
+            --output=osv-results.sarif
 
       - name: Upload SARIF report
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: osv.sarif
+          sarif_file: osv-result.sarif
 
   SourceCodeAnalysis:
     permissions:

@@ -22,7 +22,7 @@ jobs:
         uses: google/osv-scanner-action@main
         with:
           scan-args: >
-            --lockfile=package-lock.json
+            --lockfile=app/gradle.lockfile
             --format=sarif
             --output=osv-results.sarif
 
