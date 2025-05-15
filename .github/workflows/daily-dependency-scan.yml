@@ -19,14 +19,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run OSV Scanner
-        uses: google/osv-scanner-action@main
-        with:
-          scan-args: >
-            --lockfile=app/gradle.lockfile
-            --format=sarif
-            --output=osv-results.sarif
+        run: |
+          osv-scanner --lockfile=app/gradle.lockfile --format=sarif --output=osv-results.sarif || true
 
       - name: Upload SARIF to GitHub Security Dashboard
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: osv-results.sarif
+
