@@ -43,7 +43,7 @@ jobs:
         continue-on-error: true
 
       - name: Run OSV Reporter Action
-        uses: google/osv-reporter-action@v2.0.2
+        uses: google/osv-scanner-action/osv-reporter-action@v2.0.2
         with:
           base: osv-base.sarif
           head: osv-pr.sarif
