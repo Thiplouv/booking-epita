@@ -9,7 +9,7 @@ jobs:
   DependenciesAnalysis:
     permissions:
       security-events: write
-    name: Analyze Dependencies for Vulnerabilities
+    name: DependenciesAnalysis
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +33,7 @@ jobs:
   SourceCodeAnalysis:
     permissions:
       security-events: write
-    name: Analyze Source Code with Semgrep
+    name: SourceCodeAnalysis
     runs-on: ubuntu-latest
     container:
       image: returntocorp/semgrep
