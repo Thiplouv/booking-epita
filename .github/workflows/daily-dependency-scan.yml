@@ -21,7 +21,7 @@ jobs:
           osv-scanner --lockfile=package-lock.json --format=sarif --output=osv-results.sarif || true
 
       - name: Upload SARIF to GitHub Security Dashboard
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: osv-results.sarif
 
